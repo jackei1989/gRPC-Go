@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package grpc;
+
+option go_package = "./grpc";
+
+message Book {
+  int64 id = 1;
+  string title = 2;
+  string author = 3;
+  string published = 4;
+}
+
+message BookRequest {
+  string title = 1;
+}
+
+service BookService {
+  rpc GetBook (BookRequest) returns (Book);
+  rpc GetBooks (BookRequest) returns (stream Book);
+}
